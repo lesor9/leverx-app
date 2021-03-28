@@ -1,0 +1,73 @@
+.date-picker {
+    border: 1px solid #DAE1E8;
+    border-radius: 4px;
+    padding: 0px 9px;
+    margin-top: 5px;
+    width: 140px;
+    height: 36px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    background-image: url(/public/images/Datepicker.png);
+    background-size: cover;
+    cursor: pointer;
+}
+
+.date-picker__days {
+    color: #333D47;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.date-picker__days-input {
+    background: #F6F8FD;
+    border: 1px solid #DAE1E8;
+    border-radius: 4px;
+    width: 60px;
+    height: 36px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.faq-block {
+    display: flex;
+    align-items: center;
+}
+
+.select {
+    position: relative;
+
+    &:after {
+        content: "";
+        display: block;
+        border-style: solid;
+        border-width: 5px 4px 0 4px;
+        border-color: #000 transparent transparent transparent;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        z-index: 1;
+        margin-top: 3px;
+    }
+}
+
+.question {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url(/public/images/Question.svg);
+
+    &:hover {
+        background-image: url(/public/images/Question-hover.svg);
+    }   
+}
+
+.date-picker__days-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

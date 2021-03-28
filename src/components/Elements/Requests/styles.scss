@@ -1,0 +1,40 @@
+.requests {
+    margin-left: 10px;
+    background: white;
+    width: 675px;
+    height: 671px;
+    box-shadow: 0px 1px 3px rgba(32, 75, 146, 0.15);
+    border-radius: 5px;
+}
+
+.requests__title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #333D47;
+    margin: 21px 0px 0px 24px;
+}
+
+.requests__img {
+    width: 227.24px;
+    height: 177px;
+    margin: 161px 230.38px 20px 217.37px;
+}
+
+.requests__msg {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #494949;
+    margin-left: 246px;
+}
+
+.requests__msg-desc {
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    color: #494949;
+    opacity: 0.7;
+    margin-top: 6px;
+    padding-right: 10px;
+}

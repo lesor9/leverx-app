@@ -9,10 +9,12 @@ export const StyledApp = styled.div`
     overflow: auto;
     display: flex;
     flex-direction: column;
+    background-color: #f6f8fd;
+    font-family: Open Sans;
+    font-style: normal;
 `;
 
 export const StyledWrapper = styled.div`
-    width: 80%;
     height: 100%;
     max-width: 1200px;
     margin: auto;

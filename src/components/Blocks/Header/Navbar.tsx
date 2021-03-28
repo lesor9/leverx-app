@@ -6,15 +6,17 @@ import {
     StyledLi,
     StyledNav } from './styles';
 
+import './styles.scss';
+
 export default function Navbar () {
     return (
         <StyledNav>
             <StyledUl>
                 <StyledLi>
-                    <StyledNavLink to='/'>Adress Book</StyledNavLink>
+                    <StyledNavLink className='adress-book' to='/'>Adress Book</StyledNavLink>
                 </StyledLi>
-                <StyledLi active>
-                    <StyledNavLink to='#'>Leave Requests</StyledNavLink>
+                <StyledLi $active>
+                    <StyledNavLink $active to='#'>Leave Requests</StyledNavLink>
                 </StyledLi>
             </StyledUl>
         </StyledNav>

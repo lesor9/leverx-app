@@ -16,15 +16,14 @@ import {
       <StyledProfile>
         <StyledIconImage src="/public/images/plane.svg" alt="plane" />
         
-
         <StyledProfileBlock>
             <StyledDivProfile>
               <StyledImage src='/public/images/anna.png'/>
               <StyledProfileName>Anna Smith</StyledProfileName>
             </StyledDivProfile>
-          </StyledProfileBlock>
+        </StyledProfileBlock>
 
-        <StyledIconImage src="/public/images/turn_off.svg" alt="turn off" />
+        <StyledIconImage className='log-out-icon' src="/public/images/turn_off.svg" alt="turn off" />
       </StyledProfile>
     );
 };

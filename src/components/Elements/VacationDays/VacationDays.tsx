@@ -1,24 +1,28 @@
 import * as React from 'react';
 
+import './styles.scss';
+
 import {
     StyledVacationDays,
     StyledDetails,
-    StyledVacationDaysTitle } from './styles';
+    StyledVacationDaysTitle,
+    StyledVacationDaysInfo } from './styles';
 
-export default function Main ()  {
+export default function VacationDays ()  {
     return(
         <StyledVacationDays>
             <StyledVacationDaysTitle>
-                Vacation days
+                Vacation Days
             </StyledVacationDaysTitle>
 
-            <div>
-                <div>Available</div>
+            <StyledVacationDaysInfo>
+                <span>Available</span>
 
-                <div>147</div>
-            </div>
+                <span>147</span>
+            </StyledVacationDaysInfo>
 
-            <StyledDetails>» more details</StyledDetails>
+            <StyledDetails>
+                <span className='more-details'>»</span> more details</StyledDetails>
         </StyledVacationDays>
     );
 };
