@@ -12,6 +12,11 @@
     cursor: pointer;
 }
 
+.date-picker_wide {
+    width: 176px;
+    background-position: right;
+}
+
 .date-picker__days {
     color: #333D47;
     font-weight: 600;
@@ -70,4 +75,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.sick-leave-msg {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.313529px;
+    color: #333D47;
+    margin-top: 12px;
 }

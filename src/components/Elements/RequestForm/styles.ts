@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+import {
+    VACATION_LEAVE,
+    SICK_LEAVE,
+    OWN_EXPENCE_LEAVE } from '../../../constants/';
+
+interface requestProps {
+    type: string;
+}
+
 export const StyledRequestForm = styled.div`
     display: flex;
     flex-direction: column;
@@ -68,6 +77,11 @@ export const StyledButton = styled.button`
     height: 36px;
     color: white;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
 `;
 
 export const StyledSubmitSection = styled.div`
@@ -103,7 +117,7 @@ export const StyledDateBlock = styled.div`
     font-size: 13px;
 `;
 
-export const StyledDateContainer = styled.div`
+export const StyledDateContainer = styled.div<requestProps>`
     display: flex;
-    padding-top: 17px;
+    padding-top: ${(props: requestProps) => props.type === SICK_LEAVE ? '28px' : '17px'};
 `;

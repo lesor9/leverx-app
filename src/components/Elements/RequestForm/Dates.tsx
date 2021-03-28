@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { useState } from "react";
-
 import DatePicker from "react-datepicker";
 
 import './styles.scss';
@@ -11,46 +9,47 @@ import {
     StyledDateBlock,
     StyledDateContainer } from './styles';
 
-export default function Dates () {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+import Days from './Days';
 
-    const MILLISECONDS_IN_DAY = 86400000;
-    const INCLUSIVE_DAY = 1;
+import { countDaysBetween } from '../../../helpers/dates';
 
-    let daysBetweenDates = (endDate.getTime() - startDate.getTime()) / MILLISECONDS_IN_DAY;
-    daysBetweenDates = Math.ceil(daysBetweenDates) + INCLUSIVE_DAY;
+import {
+    VACATION_LEAVE,
+    SICK_LEAVE,
+    OWN_EXPENCE_LEAVE } from '../../../constants/';
+
+export default function Dates (props: any) {
+    const daysBetweenDates: any = countDaysBetween(props.startDate, props.endDate);
+
+    function days() {
+        if(props.type === VACATION_LEAVE) {
+            return (<Days daysBetweenDates={daysBetweenDates}/>);
+        }
+    }
 
     return(
-        <StyledDateContainer>
+        <StyledDateContainer type={props.type}>
             <StyledDateBlock>
                 Start Date
                 <StyledInclusiveSpan> (inclusive)</StyledInclusiveSpan>
                 <DatePicker
-                    className='date-picker'
-                    selected={startDate}
-                    onChange={(date: Date) => setStartDate(date)}
+                    className={`date-picker ${props.type === SICK_LEAVE || props.type === OWN_EXPENCE_LEAVE ? 'date-picker_wide' : ''}`}
+                    selected={props.startDate}
+                    onChange={(date: Date) => props.setStartDate(date)}
                     dateFormat={'d MMM yyyy'} />
             </StyledDateBlock>
 
             <StyledDateBlock>
-                End Date
+                {props.type === SICK_LEAVE ? 'Expected End Date' : 'End Date'}
                 <StyledInclusiveSpan> (inclusive)</StyledInclusiveSpan>
                 <DatePicker
-                    className='date-picker'
-                    selected={endDate}
-                    onChange={(date: Date) => setEndDate(date)}
+                    className={`date-picker ${props.type === SICK_LEAVE || props.type === OWN_EXPENCE_LEAVE ? 'date-picker_wide' : ''}`}
+                    selected={props.endDate}
+                    onChange={(date: Date) => props.setEndDate(date)}
                     dateFormat={'d MMM yyyy'} />
             </StyledDateBlock>
 
-            <div className='date-picker__days'>
-                <div className='date-picker__days-top'>
-                    Day(s)
-                    <div className='question' />
-                </div>
-
-                <input className='date-picker__days-input' value={daysBetweenDates} disabled type="text"/>
-            </div>
+            {days()}
         </StyledDateContainer>
     )
 }
