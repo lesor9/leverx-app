@@ -25,7 +25,8 @@ import {
     VACATION_LEAVE,
     SICK_LEAVE,
     OWN_EXPENCE_LEAVE,
-    ADD_REQUEST } from '../../../constants';    
+    ADD_REQUEST,
+    SUBTRACT_VACATIONAL_DAYS } from '../../../constants';    
 
 import "react-datepicker/dist/react-datepicker.css";
 import { countDaysBetween } from '../../../helpers/dates';
@@ -43,14 +44,18 @@ export default function RequestForm ()  {
     }
 
     function handleSubmit() {
+        const daysBetween = countDaysBetween(startDate, endDate);
+
         dispatch({type: ADD_REQUEST, payload: {
             type: requestType,
             startDate: startDate,
             endDate: endDate,
             comment: comment,
             created: Date.now(),
-            daysBetween: countDaysBetween(startDate, endDate),
+            daysBetween: daysBetween,
         }});
+
+        if(requestType === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: daysBetween});
     }
 
     return(

@@ -1,6 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import requestsReducer from './requestsReducer';
+import vacationDaysReducer from './vacationDaysReducer';
 
-export const store = createStore(requestsReducer, composeWithDevTools());
+const rootReducer = combineReducers({
+    requests: requestsReducer,
+    vacationDays: vacationDaysReducer,
+});
+
+
+export const store = createStore(rootReducer, composeWithDevTools());

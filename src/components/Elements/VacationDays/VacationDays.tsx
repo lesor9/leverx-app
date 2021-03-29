@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useSelector } from 'react-redux';
 import './styles.scss';
 
 import {
@@ -9,6 +9,8 @@ import {
     StyledVacationDaysInfo } from './styles';
 
 export default function VacationDays ()  {
+    const vacationDays = useSelector((state: any) => state.vacationDays);
+
     return(
         <StyledVacationDays>
             <StyledVacationDaysTitle>
@@ -18,7 +20,7 @@ export default function VacationDays ()  {
             <StyledVacationDaysInfo>
                 <span>Available</span>
 
-                <span>147</span>
+                <span>{vacationDays}</span>
             </StyledVacationDaysInfo>
 
             <StyledDetails>

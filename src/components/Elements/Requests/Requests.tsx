@@ -15,7 +15,7 @@ export default function Requests ()  {
     const [reqDetails, setReqDetails] = useState(false);
     const [reqEdit, setReqEdit] = useState(false);
 
-    const requests = useSelector((state: any) => state);
+    const requests = useSelector((state: any) => state.requests);
     requests.sort(sortDates);
     const sortedRequests = requests.reduce(devideToYears, {});
 

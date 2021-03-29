@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import RequestInine from './RequestInine';
 import Approves from './Approves';
 
-import { DELETE_REQUEST } from '../../../constants';
+import { CANCEL_REQUEST, SUBTRACT_VACATIONAL_DAYS } from '../../../constants';
 
 export default function RequestDetails(props: any) {
     const dispatch = useDispatch();
@@ -45,7 +45,8 @@ export default function RequestDetails(props: any) {
     };
 
     function handleCansel () {
-        dispatch({type: DELETE_REQUEST, payload: props.reqDetails.created});
+        dispatch({type: CANCEL_REQUEST, payload: props.reqDetails.created});
+        dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: -props.reqDetails.daysBetween});
         props.setReqDetails(false);
     }
 
@@ -73,7 +74,7 @@ export default function RequestDetails(props: any) {
             </div>
 
             <div className='req-details__controls'>
-                <button onClick={handleCansel} className="req-details__button">CANSEL REQUEST</button>
+                <button onClick={handleCansel} className="req-details__button">CANCEL REQUEST</button>
                 <button onClick={handleEdit} className="req-details__button">CHANGE</button>
                 <button onClick={() => {props.setReqDetails(false)}} className="req-details__blue-button">CLOSE</button>
             </div>

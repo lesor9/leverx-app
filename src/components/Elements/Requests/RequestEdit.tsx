@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import RequestInine from './RequestInine';
 
-import { UPDATE_REQUEST } from '../../../constants';
+import { 
+    SUBTRACT_VACATIONAL_DAYS,
+    VACATION_LEAVE,
+    UPDATE_REQUEST } from '../../../constants';
 
 import RequestFormFields from '../RequestForm/RequestFormFields';
 
@@ -17,14 +20,18 @@ export default function RequestEdit (props: any) {
     const [comment, setComment] = useState(props.reqEdit.comment);
 
     const saveUpdatedRequest = () => {
+        const daysBetween = countDaysBetween(startDate, endDate);
+
         dispatch({type: UPDATE_REQUEST, payload: {
             type: props.reqEdit.type,
             startDate: startDate,
             endDate: endDate,
             comment: comment,
             created: props.reqEdit.created,
-            daysBetween: countDaysBetween(startDate, endDate),
+            daysBetween: daysBetween,
         }});
+
+        if(props.reqEdit.type === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: daysBetween - props.reqEdit.daysBetween});
 
         props.setReqEdit(false)
     };
