@@ -2,7 +2,8 @@
     margin-left: 10px;
     background: white;
     width: 675px;
-    height: 671px;
+    height: fit-content;
+    min-height: 671px;
     box-shadow: 0px 1px 3px rgba(32, 75, 146, 0.15);
     border-radius: 5px;
 }
@@ -62,7 +63,7 @@
     position: relative;
 }
 
-.request-year-list__item:nth-child(odd) {
+.request-year-list__item_dark {
     background: #F6F8FD;
 }
 

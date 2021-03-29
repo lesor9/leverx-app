@@ -20,9 +20,19 @@ export default function Requests ()  {
         if(!Object.entries(sortedRequests).length) return <EmptyHistory />;
 
         let list = [];
+        let index = 1;
+
+        const nextElem = () => {
+            index += 1
+            return index;
+        }
 
         for(const year in sortedRequests) {
-            list.push(<RequestYearList year={year} requests={sortedRequests[year]} key={Date.now()}/>);
+            list.push(<RequestYearList
+                        year={year}
+                        requests={sortedRequests[year]}
+                        key={year}
+                        nextElem={nextElem} />);
         }
 
         return list;
