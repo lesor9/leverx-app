@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import DatePicker from "react-datepicker";
 
-import './styles.scss';
-
 import { 
     StyledInclusiveSpan,
     StyledDateBlock,

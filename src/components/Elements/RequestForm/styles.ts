@@ -33,7 +33,6 @@ export const StyledSelect = styled.select`
     font-size: 13px;
     line-height: 18px;
     color: #333D47;
-    margin-top: 12px;
     outline: none;
     appearance: none;
     cursor: pointer;
@@ -43,10 +42,12 @@ export const StyledH2 = styled.h2`
     font-size: 18px;
     line-height: 24px;
     margin: 0;
+    margin-top: 29px;
+    margin-left: 30px
 `;
 
 export const StyledRequestFormInfo = styled.div`
-    padding: 29px 80px 30px 30px;
+    margin: 12px 80px 20px 30px;
 `;
 
 export const StyledCommentSection = styled.div`
@@ -82,12 +83,14 @@ export const StyledButton = styled.button`
     line-height: 20px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
+    margin-bottom: 30px;
+    margin-left: 30px;
 `;
 
 export const StyledSubmitSection = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    align-items: flex-end;
 `;
 
 export const StyledFAQ = styled.a`

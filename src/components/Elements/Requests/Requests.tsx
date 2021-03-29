@@ -1,20 +1,31 @@
 import * as React from 'react';
-
+import { useState } from 'react';
 import { useSelector } from 'react-redux'
 
 import EmptyHistory from './EmptyHistory';
 import RequestYearList from './RequestYearList';
+import RequestDetails from './RequestDetails';
+import RequestEdit from './RequestEdit';
 
 import { sortDates, devideToYears } from '../../../helpers/dates';
 
 import './styles.scss';
 
 export default function Requests ()  {
+    const [reqDetails, setReqDetails] = useState(false);
+    const [reqEdit, setReqEdit] = useState(false);
+
     const requests = useSelector((state: any) => state);
     requests.sort(sortDates);
     const sortedRequests = requests.reduce(devideToYears, {});
 
-    console.log(sortedRequests);
+    function handleRequestClick(e: any) {
+        const clickedRequest = e.target.closest('.request-year-list__item');
+        const { created } = clickedRequest.dataset;
+        const clickedReqData = requests.find((req: any) => req.created === Number(created));
+
+        setReqDetails(clickedReqData);
+    }
 
     function createReqList() {
         if(!Object.entries(sortedRequests).length) return <EmptyHistory />;
@@ -32,10 +43,35 @@ export default function Requests ()  {
                         year={year}
                         requests={sortedRequests[year]}
                         key={year}
-                        nextElem={nextElem} />);
+                        nextElem={nextElem}
+                        handleRequestClick={handleRequestClick} />);
         }
 
         return list;
+    }
+
+    function createReqDetailsPopup() {
+        if(!reqDetails) return;
+        return(
+            <div className='popup'>
+                <RequestDetails
+                    reqDetails={reqDetails}
+                    setReqDetails={setReqDetails}
+                    setReqEdit={setReqEdit} />
+            </div>
+        )
+    }
+
+    function createReqEditPopup() {
+        if(!reqEdit) return;
+        
+        return(
+            <div className='popup'>
+                <RequestEdit
+                    reqEdit={reqEdit}
+                    setReqEdit={setReqEdit} />
+            </div>
+        );
     }
 
     return(
@@ -43,6 +79,10 @@ export default function Requests ()  {
             <h2 className='requests__title'>My Leave Requests</h2>
 
             {createReqList()}
+            
+            {createReqDetailsPopup()}
+
+            {createReqEditPopup()}
         </div>
     );
 };
