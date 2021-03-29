@@ -16,8 +16,9 @@ import { countDaysBetween } from '../../../helpers/dates';
 export default function RequestEdit (props: any) {
     const [startDate, setStartDate] = useState(props.reqEdit.startDate);
     const [endDate, setEndDate] = useState(props.reqEdit.endDate);
-    const dispatch = useDispatch();
     const [comment, setComment] = useState(props.reqEdit.comment);
+    
+    const dispatch = useDispatch();
 
     const saveUpdatedRequest = () => {
         const daysBetween = countDaysBetween(startDate, endDate);

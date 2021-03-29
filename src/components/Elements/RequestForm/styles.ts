@@ -28,7 +28,7 @@ export const StyledSelect = styled.select`
     border: 1px solid #DAE1E8;
     box-sizing: border-box;
     border-radius: 4px;
-    padding: 7px 5px;
+    padding: 7px 8px;
     width: 100%;
     font-size: 13px;
     line-height: 18px;
@@ -48,6 +48,7 @@ export const StyledH2 = styled.h2`
 
 export const StyledRequestFormInfo = styled.div`
     margin: 12px 80px 20px 30px;
+    width: 360px;
 `;
 
 export const StyledCommentSection = styled.div`

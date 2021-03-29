@@ -47,6 +47,7 @@
 
 .select {
     position: relative;
+    width: 360px;
 
     &:after {
         content: "";
@@ -59,7 +60,6 @@
         top: 50%;
         right: 1rem;
         z-index: 1;
-        margin-top: 3px;
     }
 }
 
@@ -87,4 +87,5 @@
     letter-spacing: -0.313529px;
     color: #333D47;
     margin-top: 12px;
+    max-width: 360px;
 }
