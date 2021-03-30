@@ -33,3 +33,7 @@ export interface IReqDetailsInterface {
 export interface IRequestProps {
     type: string;
 }
+
+export interface ITooltipProps  { 
+    children: React.ReactNode
+}
