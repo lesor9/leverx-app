@@ -25,7 +25,7 @@ import {
     CLOSE_WITHOUT_SAVING } from '../../../constants';    
 
 import "react-datepicker/dist/react-datepicker.css";
-import { countDaysBetween } from '../../../helpers/dates';
+import { countDaysBetween, dateRangeOverlaps } from '../../../helpers/dates';
 import ConfirmMessage from '../ConfirmMessage';
 
 import { IReqDetailsInterface } from './types';
@@ -33,12 +33,18 @@ import { IReqDetailsInterface } from './types';
 import { addRequest } from '../../../actions/requestActions';
 import { subtractDays } from '../../../actions/daysActions';
 
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+
+import { IRequest } from '../../../reducers/types';
+
 const RequestForm: FC = (): ReactElement => {
     const [requestType, setRequestType] = useState<string>(VACATION_LEAVE);
     const [startDate, setStartDate] = useState<Date>(new Date());
     const [endDate, setEndDate] = useState<Date>(new Date());
     const [comment, setComment] = useState<string>('');
     const [confirmMsg, setConfirmMsg] = useState<boolean>(false);
+    const vacationalDays = useTypedSelector(state => state.days);
+    const requests = useTypedSelector(state => state.requests);
 
     const dispatch = useDispatch();
 
@@ -83,6 +89,37 @@ const RequestForm: FC = (): ReactElement => {
 
         if(daysBetween < 1 || startDate < yesterday) return (<ConfirmMessage
                                         redQuestion="Sorry, but the time machine is broken, please try again later:("
+                                        whiteButton="Ok, got it"
+                                        whiteButtonType={CLOSE_WITHOUT_SAVING}
+                                        reqDetails={reqDetails} />
+        );
+
+        if(requestType === VACATION_LEAVE && vacationalDays - daysBetween < 0) return (<ConfirmMessage
+                                        redQuestion="Sorry, but you don't have enough vacation days:("
+                                        whiteButton="Ok, got it"
+                                        whiteButtonType={CLOSE_WITHOUT_SAVING}
+                                        reqDetails={reqDetails} />
+        );
+
+        let isOverlaps = false;
+        checkDates();
+        function checkDates() {
+            requests.forEach((req: IRequest) => {
+                if(dateRangeOverlaps(startDate, endDate, req.startDate, req.endDate)) isOverlaps = true;
+            });
+        }
+        if(isOverlaps) return (<ConfirmMessage
+                                        redQuestion="Oops, it looks like some of your requests are overlapping:("
+                                        whiteButton="Ok, got it"
+                                        whiteButtonType={CLOSE_WITHOUT_SAVING}
+                                        reqDetails={reqDetails} />
+        );
+
+        function checkWeekends() {
+            return startDate.getDay() === 6 && endDate.getDay() === 0;
+        }
+        if(checkWeekends()) return (<ConfirmMessage
+                                        redQuestion="Oops, it looks like this period only consists of weekends:)"
                                         whiteButton="Ok, got it"
                                         whiteButtonType={CLOSE_WITHOUT_SAVING}
                                         reqDetails={reqDetails} />

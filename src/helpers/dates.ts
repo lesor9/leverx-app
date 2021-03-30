@@ -24,3 +24,11 @@ export function countDaysBetween (startDate: Date, endDate: Date): number {
   const daysBetweenDates: number = (endDate.getTime() - startDate.getTime()) / MILLISECONDS_IN_DAY;
   return Math.round(daysBetweenDates) + INCLUSIVE_DAY;
 }
+
+//source: https://stackoverflow.com/a/59856454/15439868
+export function dateRangeOverlaps(a_start: Date, a_end: Date, b_start: Date, b_end: Date): boolean {
+  if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
+  if (a_start <= b_end && b_end <= a_end) return true; // b ends in a
+  if (b_start <= a_start && a_end <= b_end) return true; // a in b
+  return false;
+}
