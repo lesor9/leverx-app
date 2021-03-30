@@ -19,7 +19,7 @@ const Header: FC = (): ReactElement => {
         <StyledHeader>
             <StyledWrapper>
                 <StyledHeaderContent>
-                    <StyledLink to='/'>
+                    <StyledLink href='/'>
                         <StyledCompanyHeading>LEVERX GROUP</StyledCompanyHeading>
                         <StyledServiceHeading>EMPLOYEE SERVICES</StyledServiceHeading>
                     </StyledLink>

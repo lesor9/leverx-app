@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 interface StyledProps {
     $active?: boolean,
@@ -19,12 +18,12 @@ export const StyledHeaderContent = styled.div`
     color: white;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.a`
     color: white;
     text-decoration: none;
 `;
 
-export const StyledNavLink = styled(Link)`
+export const StyledNavLink = styled.a`
     font-weight: 600;
     font-size: 13px;
     line-height: 20px;

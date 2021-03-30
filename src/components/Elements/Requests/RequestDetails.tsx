@@ -8,12 +8,13 @@ import Approves from './Approves';
 
 import { 
     CANCEL_REQUEST,
-    SUBTRACT_VACATIONAL_DAYS,
     VACATION_LEAVE } from '../../../constants';
 
 import approves from './approvesInfo';
 
 import { IRequestDetailsProps } from './types';
+
+import { subtractDays } from '../../../actions/daysActions';
 
 
 const RequestDetails: FC<IRequestDetailsProps> = (props): ReactElement => {
@@ -21,7 +22,7 @@ const RequestDetails: FC<IRequestDetailsProps> = (props): ReactElement => {
 
     function handleCansel (): void {
         dispatch({type: CANCEL_REQUEST, payload: { created: props.reqDetails.created }});
-        if( props.reqDetails.type === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: -props.reqDetails.daysBetween});
+        if(props.reqDetails.type === VACATION_LEAVE) dispatch(subtractDays(-props.reqDetails.daysBetween));
         props.setReqDetails(false);
     }
 

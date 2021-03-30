@@ -2,11 +2,11 @@ import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import requestsReducer from './requestsReducer';
-import vacationDaysReducer from './vacationDaysReducer';
+import daysReducer from './daysReducer';
 
 const rootReducer = combineReducers({
     requests: requestsReducer,
-    vacationDays: vacationDaysReducer,
+    days: daysReducer,
 });
 
 export type RootReducer = ReturnType<typeof rootReducer>;

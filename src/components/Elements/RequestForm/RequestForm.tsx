@@ -21,8 +21,6 @@ import {
 
 import {
     VACATION_LEAVE,
-    ADD_REQUEST,
-    SUBTRACT_VACATIONAL_DAYS,
     CLOSE_WITH_SAVING,
     CLOSE_WITHOUT_SAVING } from '../../../constants';    
 
@@ -31,6 +29,9 @@ import { countDaysBetween } from '../../../helpers/dates';
 import ConfirmMessage from '../ConfirmMessage';
 
 import { IReqDetailsInterface } from './types';
+
+import { addRequest } from '../../../actions/requestActions';
+import { subtractDays } from '../../../actions/daysActions';
 
 const RequestForm: FC = (): ReactElement => {
     const [requestType, setRequestType] = useState<string>(VACATION_LEAVE);
@@ -52,16 +53,17 @@ const RequestForm: FC = (): ReactElement => {
     function createRequest(): void {
         const daysBetween: number = countDaysBetween(startDate, endDate);
 
-        dispatch({type: ADD_REQUEST, payload: {
+        dispatch(addRequest({
             type: requestType,
             startDate: startDate,
             endDate: endDate,
             comment: comment,
             created: Date.now(),
             daysBetween: daysBetween,
-        }});
+        }));
+        
 
-        if(requestType === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: daysBetween});
+        if(requestType === VACATION_LEAVE) dispatch(subtractDays(daysBetween));
     }
 
     function showConfirmMessage(): ReactElement | undefined {

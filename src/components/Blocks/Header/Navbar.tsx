@@ -15,10 +15,10 @@ const Navbar: FC = (): ReactElement => {
         <StyledNav>
             <StyledUl>
                 <StyledLi>
-                    <StyledNavLink className='adress-book' to='/'>Adress Book</StyledNavLink>
+                    <StyledNavLink className='adress-book' href='/'>Adress Book</StyledNavLink>
                 </StyledLi>
                 <StyledLi $active>
-                    <StyledNavLink $active to='#'>Leave Requests</StyledNavLink>
+                    <StyledNavLink $active href='#'>Leave Requests</StyledNavLink>
                 </StyledLi>
             </StyledUl>
         </StyledNav>

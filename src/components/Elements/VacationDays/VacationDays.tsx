@@ -12,7 +12,7 @@ import {
     StyledVacationDaysInfo } from './styles';
 
 const VacationDays: FC = (): ReactElement => {
-    const vacationDays = useTypedSelector((state) => state.vacationDays);
+    const vacationDays = useTypedSelector((state) => state.days);
 
     return(
         <StyledVacationDays>

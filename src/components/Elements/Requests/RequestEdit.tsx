@@ -6,16 +6,17 @@ import { useDispatch } from 'react-redux';
 
 import RequestInline from './RequestInline';
 
-import { 
-    SUBTRACT_VACATIONAL_DAYS,
-    VACATION_LEAVE,
-    UPDATE_REQUEST } from '../../../constants';
+import { VACATION_LEAVE } from '../../../constants';
 
 import RequestFormFields from '../RequestForm/RequestFormFields';
 
 import { countDaysBetween } from '../../../helpers/dates';
 
 import { IRequestEditProps } from './types';
+
+import { subtractDays } from '../../../actions/daysActions';
+import { updateRequest } from '../../../actions/requestActions';
+
 
 const RequestEdit: FC<IRequestEditProps> = (props): ReactElement => {
     const [startDate, setStartDate] = useState<Date>(props.reqEdit.startDate);
@@ -27,16 +28,16 @@ const RequestEdit: FC<IRequestEditProps> = (props): ReactElement => {
     const saveUpdatedRequest = (): void => {
         const daysBetween: number = countDaysBetween(startDate, endDate);
 
-        dispatch({type: UPDATE_REQUEST, payload: {
+        dispatch(updateRequest({
             type: props.reqEdit.type,
             startDate: startDate,
             endDate: endDate,
             comment: comment,
             created: props.reqEdit.created,
             daysBetween: daysBetween,
-        }});
-
-        if(props.reqEdit.type === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: daysBetween - props.reqEdit.daysBetween});
+        }));
+        
+        if(props.reqEdit.type === VACATION_LEAVE) dispatch(subtractDays(daysBetween - props.reqEdit.daysBetween));
 
         props.setReqEdit(false)
     };

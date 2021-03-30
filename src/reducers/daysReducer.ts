@@ -1,4 +1,4 @@
-import { SUBTRACT_VACATIONAL_DAYS } from '../constants/';
+import { SUBTRACT_VACATIONAL_DAYS } from '../constants';
 import { IDaysAction } from './types';
 
 export default (state = 147, action: IDaysAction): number => {

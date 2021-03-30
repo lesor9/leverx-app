@@ -3,7 +3,8 @@ import { FC, ReactElement } from 'react';
 
 import RequestInline from './RequestInline';
 
-import { IRequestYearListProps, IRequest } from './types';
+import { IRequest } from '../../../reducers/types';
+import { IRequestYearListProps } from './types';
 
 
 const RequestYearList: FC<IRequestYearListProps> = (props): ReactElement  => {

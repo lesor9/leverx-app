@@ -3,7 +3,9 @@ import {
     CANCEL_REQUEST,
     UPDATE_REQUEST } from '../constants/';
 
-import { IRequest, IRequestAction } from './types';
+import { 
+    IRequest, 
+    IRequestAction } from './types';
 
 export default (state: Array<IRequest> = [], action: IRequestAction): Array<IRequest> => {
     switch (action.type) {
