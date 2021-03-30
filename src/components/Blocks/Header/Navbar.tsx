@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import {
     StyledUl,
@@ -8,7 +9,8 @@ import {
 
 import './styles.scss';
 
-export default function Navbar () {
+
+const Navbar: FC = (): ReactElement => {
     return (
         <StyledNav>
             <StyledUl>
@@ -22,3 +24,5 @@ export default function Navbar () {
         </StyledNav>
     );
 };
+
+export default Navbar;

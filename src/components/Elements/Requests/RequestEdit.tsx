@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import RequestInine from './RequestInine';
+import RequestInline from './RequestInline';
 
 import { 
     SUBTRACT_VACATIONAL_DAYS,
@@ -44,7 +44,7 @@ export default function RequestEdit (props: any) {
                     <span className='req-edit__title'>Change request</span>
                 </div>
                 
-                <RequestInine req={props.reqEdit} />
+                <RequestInline req={props.reqEdit} />
 
                 <RequestFormFields
                     type={props.reqEdit.type}

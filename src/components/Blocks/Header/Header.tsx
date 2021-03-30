@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import Navbar from './Navbar';
 import UserControls from './UserControls';
@@ -13,7 +14,7 @@ import {
 import { StyledWrapper } from '../../App/styles';
 
 
-export default function Header ()  {
+const Header: FC = (): ReactElement => {
     return(
         <StyledHeader>
             <StyledWrapper>
@@ -30,4 +31,6 @@ export default function Header ()  {
             </StyledWrapper>
         </StyledHeader>
     );
-};
+}
+
+export default Header;

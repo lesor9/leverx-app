@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import Header from '../Blocks/Header';
 import Main from '../Blocks/Main';
@@ -6,7 +7,7 @@ import Main from '../Blocks/Main';
 import { StyledApp } from './styles';
 
 
-function App () {
+const App: FC = (): ReactElement => {
     return(
         <StyledApp>
             <Header />

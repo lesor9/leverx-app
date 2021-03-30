@@ -20,5 +20,5 @@ export function devideToYears (accumalator: any, value: any) {
 
 export function countDaysBetween (startDate: any, endDate: any) {
   const daysBetweenDates = (endDate.getTime() - startDate.getTime()) / MILLISECONDS_IN_DAY;
-  return Math.ceil(daysBetweenDates) + INCLUSIVE_DAY;
+  return Math.round(daysBetweenDates) + INCLUSIVE_DAY;
 }

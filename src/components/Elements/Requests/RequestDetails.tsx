@@ -2,10 +2,13 @@ import * as React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import RequestInine from './RequestInine';
+import RequestInline from './RequestInline';
 import Approves from './Approves';
 
-import { CANCEL_REQUEST, SUBTRACT_VACATIONAL_DAYS } from '../../../constants';
+import { 
+    CANCEL_REQUEST,
+    SUBTRACT_VACATIONAL_DAYS,
+    VACATION_LEAVE } from '../../../constants';
 
 export default function RequestDetails(props: any) {
     const dispatch = useDispatch();
@@ -46,7 +49,7 @@ export default function RequestDetails(props: any) {
 
     function handleCansel () {
         dispatch({type: CANCEL_REQUEST, payload: props.reqDetails.created});
-        dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: -props.reqDetails.daysBetween});
+        if( props.reqDetails.type === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: -props.reqDetails.daysBetween});
         props.setReqDetails(false);
     }
 
@@ -68,7 +71,7 @@ export default function RequestDetails(props: any) {
                 </div>
                 
 
-                <RequestInine req={props.reqDetails} />
+                <RequestInline req={props.reqDetails} />
 
                 <Approves approves={approves}/>
             </div>

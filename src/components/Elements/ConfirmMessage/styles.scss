@@ -1,0 +1,128 @@
+.popup {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm {
+    width: 500px;
+     min-height: 60px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.confirm__request-type {
+    min-height: 60px;
+    border-radius: 10px 10px 0px 0px;
+    background: #FAFAFA;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.385882px;
+    color: #333333;
+    padding-top: 20px;
+    padding-left: 25px;
+    box-sizing: border-box;
+}
+
+.confirm__bottoms {
+    min-height: 60px;
+    border-radius: 0px 0px 10px 10px;
+    background: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.comfirm__messages {
+    height: 100%;
+    padding-top: 22px;
+    padding-bottom: 30px;
+}
+
+.confirm__white {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 9px 15px;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.289412px;
+    text-transform: uppercase;
+    color: #333333;
+    cursor: pointer;
+}
+
+.confirm__white:first-child {
+    margin-right: 6px;
+}
+
+.confirm__white:last-child {
+    margin-right: 0px;
+}
+
+.confirm__blue {
+    background: #5495FF;
+    border: 1px solid #4C88E8;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 9px 15px;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.289412px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.request-inline-short {
+    display: flex;
+    align-items: center;
+}
+
+.request-inline-short__img {
+    margin: 0px 15px 0px 27px;
+    width: 50px;
+    height: 50px;
+}
+
+.confrim__question {
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.313529px;
+    color: #333333;
+    margin-left: 30px;
+    margin-bottom: 12px;
+    max-width: 424px;
+}
+
+.confrim__red-question {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.313529px;
+    color: #F80000;
+    margin-left: 30px;
+    max-width: 410px;
+}
+
+.confrim__red-question:first-child {
+    margin-bottom: 24px;
+}
+
+.confrim__red-question:last-child {
+    margin-bottom: 0px;
+}
