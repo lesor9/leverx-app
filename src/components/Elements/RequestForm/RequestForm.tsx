@@ -1,17 +1,15 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
+
 import { useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import RequestFormFields from './RequestFormFields';
 
 import './styles.scss';
 
 import {
-    StyledSelect,
     StyledH2,
-    StyledRequestFormInfo,
-    StyledCommentSection,
-    StyledTextArea,
     StyledButton,
     StyledSubmitSection,
     StyledFAQ,
@@ -23,8 +21,6 @@ import {
 
 import {
     VACATION_LEAVE,
-    SICK_LEAVE,
-    OWN_EXPENCE_LEAVE,
     ADD_REQUEST,
     SUBTRACT_VACATIONAL_DAYS,
     CLOSE_WITH_SAVING,
@@ -34,25 +30,27 @@ import "react-datepicker/dist/react-datepicker.css";
 import { countDaysBetween } from '../../../helpers/dates';
 import ConfirmMessage from '../ConfirmMessage';
 
-export default function RequestForm ()  {
-    const [requestType, setRequestType] = useState(VACATION_LEAVE);
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const [comment, setComment] = useState('');
-    const [confirmMsg, setConfirmMsg] = useState(false);
+import { IReqDetailsInterface } from './types';
+
+const RequestForm: FC = (): ReactElement => {
+    const [requestType, setRequestType] = useState<string>(VACATION_LEAVE);
+    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [endDate, setEndDate] = useState<Date>(new Date());
+    const [comment, setComment] = useState<string>('');
+    const [confirmMsg, setConfirmMsg] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
-    function changeType(e: any) {
-        setRequestType(e.target.value);
+    function changeType(event: React.ChangeEvent<HTMLSelectElement>) {
+        setRequestType(event.target.value);
     }
 
-    function handleSubmit() {
+    function handleSubmit(): void {
         setConfirmMsg(true);
     }
 
-    function createRequest() {
-        const daysBetween = countDaysBetween(startDate, endDate);
+    function createRequest(): void {
+        const daysBetween: number = countDaysBetween(startDate, endDate);
 
         dispatch({type: ADD_REQUEST, payload: {
             type: requestType,
@@ -66,10 +64,10 @@ export default function RequestForm ()  {
         if(requestType === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: daysBetween});
     }
 
-    function showConfirmMessage() {
+    function showConfirmMessage(): ReactElement | undefined {
         if(!confirmMsg) return;
 
-        const reqDetails = {
+        const reqDetails: IReqDetailsInterface = {
             type: requestType,
             startDate: startDate,
             endDate: endDate,
@@ -77,9 +75,9 @@ export default function RequestForm ()  {
             createRequest: createRequest,
         };
 
-        const daysBetween = countDaysBetween(startDate, endDate);
-        const todayToStartDate = countDaysBetween(new Date(), startDate);
-        const yesterday = new Date(new Date().setHours(0, 0, 0, 0));
+        const daysBetween: number = countDaysBetween(startDate, endDate);
+        const todayToStartDate: number = countDaysBetween(new Date(), startDate);
+        const yesterday: Date = new Date(new Date().setHours(0, 0, 0, 0));
 
         if(daysBetween < 1 || startDate < yesterday) return (<ConfirmMessage
                                         redQuestion="Sorry, but the time machine is broken, please try again later:("
@@ -147,3 +145,5 @@ export default function RequestForm ()  {
         </StyledRequestForm>
     );
 };
+
+export default RequestForm;

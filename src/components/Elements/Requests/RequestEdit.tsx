@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -13,15 +15,17 @@ import RequestFormFields from '../RequestForm/RequestFormFields';
 
 import { countDaysBetween } from '../../../helpers/dates';
 
-export default function RequestEdit (props: any) {
-    const [startDate, setStartDate] = useState(props.reqEdit.startDate);
-    const [endDate, setEndDate] = useState(props.reqEdit.endDate);
-    const [comment, setComment] = useState(props.reqEdit.comment);
+import { IRequestEditProps } from './types';
+
+const RequestEdit: FC<IRequestEditProps> = (props): ReactElement => {
+    const [startDate, setStartDate] = useState<Date>(props.reqEdit.startDate);
+    const [endDate, setEndDate] = useState<Date>(props.reqEdit.endDate);
+    const [comment, setComment] = useState<string>(props.reqEdit.comment);
     
     const dispatch = useDispatch();
 
-    const saveUpdatedRequest = () => {
-        const daysBetween = countDaysBetween(startDate, endDate);
+    const saveUpdatedRequest = (): void => {
+        const daysBetween: number = countDaysBetween(startDate, endDate);
 
         dispatch({type: UPDATE_REQUEST, payload: {
             type: props.reqEdit.type,
@@ -48,7 +52,7 @@ export default function RequestEdit (props: any) {
 
                 <RequestFormFields
                     type={props.reqEdit.type}
-                    handleTypeChange={() => {}}
+                    handleTypeChange={(event: React.ChangeEvent<HTMLSelectElement>) => event}
                     selectDisabled
                     comment={props.reqEdit.comment}
                     setComment={setComment}
@@ -65,3 +69,5 @@ export default function RequestEdit (props: any) {
         </div>
     );
 }
+
+export default RequestEdit;

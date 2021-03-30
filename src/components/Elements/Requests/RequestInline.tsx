@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import { VACATION_LEAVE } from '../../../constants';
 
-export default function RequestInline(props: any) {
+import { IRequestInlineProps } from './types';
 
+const RequestInline: FC<IRequestInlineProps> = (props): ReactElement => {
     return(
         <li className={`request-year-list__item ${props.withArrow ? 'withArrow' : ''} ${props.nextElem && props.nextElem() % 2 === 0 ? 'request-year-list__item_dark' : ''}`} key={props.req.created} data-created={props.req.created}>
             <img className='request-year-list__img' src={`/public/images/${props.req.type}-icon.png`} alt="reqimg"/>
@@ -24,3 +26,5 @@ export default function RequestInline(props: any) {
         </li>
     )
 }
+
+export default RequestInline;

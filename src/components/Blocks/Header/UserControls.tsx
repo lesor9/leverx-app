@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { FC, ReactElement } from 'react';
 
 import { 
   StyledProfile, 
-  StyledIconImage, 
-  StyledLink, 
+  StyledIconImage,
   StyledImage,
   StyledProfileBlock,
   StyledProfileName,
   StyledDivProfile } from './styles';
 
-  export default function UserControls () {
+  const UserControls: FC = (): ReactElement => {
 
     return (
       <StyledProfile>
@@ -27,3 +26,5 @@ import {
       </StyledProfile>
     );
 };
+
+export default UserControls;

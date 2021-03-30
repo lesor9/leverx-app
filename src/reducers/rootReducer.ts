@@ -9,5 +9,6 @@ const rootReducer = combineReducers({
     vacationDays: vacationDaysReducer,
 });
 
+export type RootReducer = ReturnType<typeof rootReducer>;
 
 export const store = createStore(rootReducer, composeWithDevTools());

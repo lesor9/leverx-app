@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
-export default function Days (props: any) {
+import { IDaysProps } from './types';
 
+
+const Days: FC<IDaysProps> = (props): ReactElement => {
     return(
         <div className='date-picker__days'>
             <div className='date-picker__days-top'>
@@ -13,3 +16,5 @@ export default function Days (props: any) {
         </div>
     )
 }
+
+export default Days;

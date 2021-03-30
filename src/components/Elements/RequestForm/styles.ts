@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-import {
-    VACATION_LEAVE,
-    SICK_LEAVE,
-    OWN_EXPENCE_LEAVE } from '../../../constants/';
+import { SICK_LEAVE } from '../../../constants/';
 
-interface requestProps {
-    type: string;
-}
+import { IRequestProps } from './types';
 
 export const StyledRequestForm = styled.div`
     display: flex;
@@ -121,7 +116,7 @@ export const StyledDateBlock = styled.div`
     font-size: 13px;
 `;
 
-export const StyledDateContainer = styled.div<requestProps>`
+export const StyledDateContainer = styled.div<IRequestProps>`
     display: flex;
-    padding-top: ${(props: requestProps) => props.type === SICK_LEAVE ? '28px' : '17px'};
+    padding-top: ${(props: IRequestProps) => props.type === SICK_LEAVE ? '28px' : '17px'};
 `;

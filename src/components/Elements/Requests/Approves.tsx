@@ -1,14 +1,18 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
-export default function Approves(props: any) {
+import { IApprovesProps, IApprover } from './types';
+
+
+const Approves: FC<IApprovesProps> = (props): ReactElement => {
     return (
         <div className='approves'>
-            {Object.keys(props.approves).map((approveStage, stageInd) => {
+            {Object.keys(props.approves).map((approveStage: string, stageInd: number) => {
                 return(
                     <div className='approve' key={stageInd}>
                         <div className='approves__title'>{approveStage}</div>
 
-                        {props.approves[approveStage].map((approver: any, approverInd: any) => {
+                        {props.approves[approveStage].map((approver: IApprover, approverInd: number) => {
                             return(
                             <div className='approver' key={approverInd}>
                                 <img className='approver__img' src="/public/images/face.png" alt="user pic"/>
@@ -27,3 +31,5 @@ export default function Approves(props: any) {
         </div>
     );
 }
+
+export default Approves;

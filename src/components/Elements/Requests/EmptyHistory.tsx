@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
-export default function EmptyHistory ()  {
+
+const EmptyHistory: FC = (): ReactElement => {
     return(
         <div>
-
             <img className='requests__img' src="/public/images/empty_history.png" alt="history"/>
 
             <div className='requests__msg'>No vacation requests yet</div>
@@ -12,3 +13,5 @@ export default function EmptyHistory ()  {
         </div>
     );
 };
+
+export default EmptyHistory;

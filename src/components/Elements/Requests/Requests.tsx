@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
+
 import { useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 import EmptyHistory from './EmptyHistory';
 import RequestYearList from './RequestYearList';
@@ -9,37 +11,41 @@ import RequestEdit from './RequestEdit';
 
 import { sortDates, devideToYears } from '../../../helpers/dates';
 
+import { IRequest } from '../../../reducers/types';
+import { ISortedRequest } from './types';
+
 import './styles.scss';
 
-export default function Requests ()  {
-    const [reqDetails, setReqDetails] = useState(false);
-    const [reqEdit, setReqEdit] = useState(false);
+const Requests: FC = (): ReactElement => {
+    const [reqDetails, setReqDetails] = useState<IRequest | false>(false);
+    const [reqEdit, setReqEdit] = useState<IRequest | false>(false);
 
-    const requests = useSelector((state: any) => state.requests);
+    const requests = useTypedSelector((state) => state.requests);
     requests.sort(sortDates);
-    const sortedRequests = requests.reduce(devideToYears, {});
+    const sortedRequests: ISortedRequest = requests.reduce(devideToYears, {});
 
-    function handleRequestClick(e: any) {
-        const clickedRequest = e.target.closest('.request-year-list__item');
+    function handleRequestClick(event: React.MouseEvent<HTMLUListElement>) {
+        const target = event.target as HTMLElement;
+        const clickedRequest: HTMLElement = target.closest('.request-year-list__item');
         const { created } = clickedRequest.dataset;
-        const clickedReqData = requests.find((req: any) => req.created === Number(created));
+        const clickedReqData: IRequest = requests.find((req: IRequest) => req.created === Number(created));
 
         setReqDetails(clickedReqData);
     }
 
-    function createReqList() {
+    function createReqList(): JSX.Element | Array<ReactElement> {
         if(!Object.entries(sortedRequests).length) return <EmptyHistory />;
 
-        let list = [];
-        let index = 1;
+        const requestsList: Array<ReactElement> = [];
+        let requestIndex = 1;
 
-        const nextElem = () => {
-            index += 1
-            return index;
+        const nextElem: () => number = (): number => {
+            requestIndex += 1
+            return requestIndex;
         }
 
         for(const year in sortedRequests) {
-            list.push(<RequestYearList
+            requestsList.push(<RequestYearList
                         year={year}
                         requests={sortedRequests[year]}
                         key={year}
@@ -47,10 +53,10 @@ export default function Requests ()  {
                         handleRequestClick={handleRequestClick} />);
         }
 
-        return list;
+        return requestsList;
     }
 
-    function createReqDetailsPopup() {
+    function createReqDetailsPopup(): ReactElement | undefined {
         if(!reqDetails) return;
         return(
             <div className='popup'>
@@ -62,7 +68,7 @@ export default function Requests ()  {
         )
     }
 
-    function createReqEditPopup() {
+    function createReqEditPopup(): ReactElement | undefined {
         if(!reqEdit) return;
         
         return(
@@ -86,3 +92,5 @@ export default function Requests ()  {
         </div>
     );
 };
+
+export default Requests;

@@ -3,7 +3,9 @@ import {
     CANCEL_REQUEST,
     UPDATE_REQUEST } from '../constants/';
 
-export default (state: Array<any> = [], action: any) => {
+import { IRequest, IRequestAction } from './types';
+
+export default (state: Array<IRequest> = [], action: IRequestAction): Array<IRequest> => {
     switch (action.type) {
         case ADD_REQUEST:
             return [...state, action.payload];
@@ -11,7 +13,7 @@ export default (state: Array<any> = [], action: any) => {
             const temp = state.filter((req) => req.created !== action.payload.created);
             return [...temp, action.payload];
         case CANCEL_REQUEST:
-            return state.filter((req) => req.created !== action.payload);
+            return state.filter((req: IRequest) => req.created !== action.payload.created);
         default:
             return state;
     }

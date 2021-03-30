@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { FC, ReactElement } from 'react';
+
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+
 import './styles.scss';
 
 import {
@@ -8,8 +11,8 @@ import {
     StyledVacationDaysTitle,
     StyledVacationDaysInfo } from './styles';
 
-export default function VacationDays ()  {
-    const vacationDays = useSelector((state: any) => state.vacationDays);
+const VacationDays: FC = (): ReactElement => {
+    const vacationDays = useTypedSelector((state) => state.vacationDays);
 
     return(
         <StyledVacationDays>
@@ -28,3 +31,5 @@ export default function VacationDays ()  {
         </StyledVacationDays>
     );
 };
+
+export default VacationDays;

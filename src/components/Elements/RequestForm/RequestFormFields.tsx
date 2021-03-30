@@ -1,27 +1,21 @@
 import * as React from 'react';
-import { useState } from "react";
+import { FC, ReactElement } from 'react';
 
 import {
     StyledSelect,
-    StyledH2,
     StyledRequestFormInfo,
     StyledCommentSection,
-    StyledTextArea,
-    StyledButton,
-    StyledSubmitSection,
-    StyledFAQ,
-    StyledQuestion } from './styles';
+    StyledTextArea } from './styles';
 
 import Dates from './Dates';
 
-import {
-    VACATION_LEAVE,
-    SICK_LEAVE,
-    OWN_EXPENCE_LEAVE,
-    ADD_REQUEST } from '../../../constants';
+import { SICK_LEAVE } from '../../../constants';
 
-export default function RequestFormInfo (props: any) {
-    function sickMsg() {
+import { IRequestFormInfo } from './types';
+
+
+const RequestFormInfo: FC<IRequestFormInfo> = (props): ReactElement => {
+    function sickMsg(): ReactElement | undefined {
         if(props.type !== SICK_LEAVE) return;
 
         return (
@@ -59,3 +53,5 @@ export default function RequestFormInfo (props: any) {
         </StyledRequestFormInfo>   
     )
 }
+
+export default RequestFormInfo;

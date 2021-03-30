@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import DatePicker from "react-datepicker";
 
@@ -16,10 +17,12 @@ import {
     SICK_LEAVE,
     OWN_EXPENCE_LEAVE } from '../../../constants/';
 
-export default function Dates (props: any) {
-    const daysBetweenDates: any = countDaysBetween(props.startDate, props.endDate);
+import { IDatesProps } from './types';
 
-    function days() {
+const Dates: FC<IDatesProps> = (props): ReactElement => {
+    const daysBetweenDates: number = countDaysBetween(props.startDate, props.endDate);
+
+    function days(): void | ReactElement {
         if(props.type === VACATION_LEAVE) {
             return (<Days daysBetweenDates={daysBetweenDates}/>);
         }
@@ -51,3 +54,5 @@ export default function Dates (props: any) {
         </StyledDateContainer>
     )
 }
+
+export default Dates;

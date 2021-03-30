@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import RequestInlineShort from './RequestInlineShort';
  
@@ -6,18 +7,21 @@ import { CLOSE_WITH_SAVING } from '../../../constants';
 
 import "./styles.scss";
 
-export default function ConfirmMessage(props: any) {
+import { IConfirmMessageProps } from './types';
 
-    function createRequest() {
+
+const ConfirmMessage: FC<IConfirmMessageProps> = (props): ReactElement => {
+
+    function createRequest(): void {
         props.reqDetails.createRequest();
         props.reqDetails.hideMessage(false);
     }
 
-    function closeMessage() {
+    function closeMessage(): void {
         props.reqDetails.hideMessage(false)
     }
 
-    function whiteButtons() {
+    function whiteButtons(): ReactElement | undefined {
         if(!props.whiteButton) return;
 
         return (
@@ -26,7 +30,7 @@ export default function ConfirmMessage(props: any) {
             </button>)
     }
 
-    function blueButtons() {
+    function blueButtons(): ReactElement | undefined {
         if(!props.blueButton) return;
 
         return (
@@ -35,7 +39,7 @@ export default function ConfirmMessage(props: any) {
             </button>)
     }
 
-    function redQuestion () {
+    function redQuestion (): ReactElement | undefined {
         if (!props.redQuestion) return;
 
         return(
@@ -45,7 +49,7 @@ export default function ConfirmMessage(props: any) {
         )
     }
 
-    function question () {
+    function question (): ReactElement | undefined {
         if (!props.question) return;
 
         return(
@@ -81,3 +85,5 @@ export default function ConfirmMessage(props: any) {
         </div>
     )
 }
+
+export default ConfirmMessage;

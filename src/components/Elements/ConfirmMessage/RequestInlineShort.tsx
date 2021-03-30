@@ -1,9 +1,13 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
+
 import { countDaysBetween } from '../../../helpers/dates';
 import { VACATION_LEAVE } from '../../../constants/index';
 
-export default function RequestInlineShort (props: any) {
-    const daysBetween = countDaysBetween(props.startDate, props.endDate);
+import { IRequestInlineShortProps } from './types';
+
+const RequestInlineShort: FC<IRequestInlineShortProps> = (props): ReactElement => {
+    const daysBetween: number = countDaysBetween(props.startDate, props.endDate);
 
     return(
         <div className="request-inline-short">
@@ -15,3 +19,5 @@ export default function RequestInlineShort (props: any) {
         </div>
     )
 }
+
+export default RequestInlineShort;

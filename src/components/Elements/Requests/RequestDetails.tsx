@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -10,50 +11,21 @@ import {
     SUBTRACT_VACATIONAL_DAYS,
     VACATION_LEAVE } from '../../../constants';
 
-export default function RequestDetails(props: any) {
+import approves from './approvesInfo';
+
+import { IRequestDetailsProps } from './types';
+
+
+const RequestDetails: FC<IRequestDetailsProps> = (props): ReactElement => {
     const dispatch = useDispatch();
 
-    const approves = {
-        'Already approved': [
-            {
-                name: 'John Smith',
-                comment: 'Have a nice vacation!',
-            },
-            {
-                name: 'John Smith',
-                comment: 'Have a nice vacation!',
-            }
-        ],
-
-        'Current approver(s)': [
-            {
-                name: 'Will McConnel',
-            },
-        ],
-
-        'Next approver(s)': [
-            {
-                name: 'John Smith',
-            },
-            {
-                name: 'Mike Smith',
-            },
-        ],
-
-        'Documents registration (final step)': [
-            {
-                name: 'Katrin Brown',
-            },
-        ]
-    };
-
-    function handleCansel () {
-        dispatch({type: CANCEL_REQUEST, payload: props.reqDetails.created});
+    function handleCansel (): void {
+        dispatch({type: CANCEL_REQUEST, payload: { created: props.reqDetails.created }});
         if( props.reqDetails.type === VACATION_LEAVE) dispatch({type: SUBTRACT_VACATIONAL_DAYS, payload: -props.reqDetails.daysBetween});
         props.setReqDetails(false);
     }
 
-    function handleEdit () {
+    function handleEdit (): void {
         props.setReqDetails(false);
         props.setReqEdit(props.reqDetails);
     }
@@ -84,3 +56,5 @@ export default function RequestDetails(props: any) {
         </div>
     );
 }
+
+export default RequestDetails;

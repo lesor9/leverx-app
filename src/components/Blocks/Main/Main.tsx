@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement } from 'react';
 
 import VacationDays from '../../Elements/VacationDays';
 import RequestForm from '../../Elements/RequestForm';
@@ -8,7 +9,8 @@ import { StyledWrapper } from '../../App/styles';
 
 import { StyledMain, StyledMainContent } from './styles';
 
-export default function Main ()  {
+
+const Main: FC = (): ReactElement => {
     return(
         <StyledMain>
             <StyledWrapper>
@@ -24,3 +26,5 @@ export default function Main ()  {
         </StyledMain>
     );
 };
+
+export default Main;
