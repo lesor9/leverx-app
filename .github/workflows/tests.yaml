@@ -1,7 +1,7 @@
 name: Test LeverX app
 on: [pull_request]
 jobs:
-  check-bats-version:
+  test-react-app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
